@@ -12,11 +12,11 @@ struct ListView: View {
     @Binding var searchText: String
     var body: some View {
         ZStack{
-            Color.flatDarkCardBackground.ignoresSafeArea()
+            Color.flatDarkBackground.ignoresSafeArea()
             VStack{
                 SearchBar(text: $searchText)
                     .padding(.top)
-                
+                Box(country: "Germany", city: "Berlin", temperature: 10)
                 
             }
         }
@@ -93,12 +93,12 @@ struct Box: View {
     }
 }
 
-
-struct SearchBar_Previews: PreviewProvider {
-    static var previews: some View {
-        Box(country: "Germany", city: "Berlin", temperature: 10)
-    }
-}
+//
+//struct SearchBar_Previews: PreviewProvider {
+//    static var previews: some View {
+//        Box(country: "Germany", city: "Berlin", temperature: 10)
+//    }
+//}
 
 
 
@@ -150,7 +150,8 @@ struct SearchBar: View {
                     .animation(.default)
                 }
                 
-            }.frame(width: 400, height: 100)
+            }.frame(width: 380, height: 100)
+            .background(Color.flatDarkCardBackground)
     }
 }
 
