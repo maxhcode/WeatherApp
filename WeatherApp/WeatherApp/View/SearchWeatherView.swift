@@ -78,14 +78,13 @@ struct Predict: View{
                 TextField(self.textFieldTitle ?? "Search", text: $input, onEditingChanged: { editing in self.realTimePrediction(status: editing); isBeingEdited=editing}, onCommit: { self.matchInput()})
                     .padding(7)
                     .padding(.horizontal, 25)
-                    .background(Color(.systemGray6))
                     .cornerRadius(8)
                     .overlay(
-                        HStack {
+                        HStack{
                             Image(systemName: "magnifyingglass")
-                                .foregroundColor(.gray)
+                                .foregroundColor(.white)
                                 .frame(minWidth: 0, maxWidth: .infinity, alignment: .leading)
-                                .padding(.leading, 8)
+                                .padding(.leading, 0)
                             
                             if isBeingEdited {
                                 Button(action: {
