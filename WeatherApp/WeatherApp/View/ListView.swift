@@ -9,16 +9,18 @@ import SwiftUI
 
 
 struct ListView: View {
-    @Binding var searchText: String
+    init() {UINavigationBar.appearance().largeTitleTextAttributes = [.foregroundColor: UIColor.white]}
+    
     var body: some View {
+        NavigationView{
         ZStack{
             Color.flatDarkBackground.ignoresSafeArea()
             VStack{
-                SearchBar(text: $searchText)
-                    .padding(.top)
                 Box(country: "Germany", city: "Berlin", temperature: 10)
-                
+                Box(country: "Germany", city: "Berlin", temperature: 10)
+                Box(country: "Germany", city: "Berlin", temperature: 10)
             }
+            }.navigationBarTitle(Text("Weather List"))
         }
     }
 }
@@ -26,7 +28,7 @@ struct ListView: View {
 
 struct ListView_Previews: PreviewProvider {
     static var previews: some View {
-        ListView(searchText: .constant(""))
+        ListView()
         
     }
 }
@@ -65,7 +67,7 @@ struct Box: View {
                     }
                 }.frame(width: 70, height: 70, alignment: .center)
                 
-                HStack(spacing: 20) {
+                HStack(spacing: 10) {
                     HStack(){
                     Image(systemName: "mappin").foregroundColor(.white)
                     Text(country)
@@ -97,70 +99,9 @@ struct Box: View {
 }
 
 //
-//struct SearchBar_Previews: PreviewProvider {
+//struct Box_Previews: PreviewProvider {
 //    static var previews: some View {
 //        Box(country: "Germany", city: "Berlin", temperature: 10)
-//    }
-//}
-
-
-
-
-    
-struct SearchBar: View {
-    @Binding var text: String
-    @State private var isEditing = false
-    var body: some View {
-        
-            HStack{
-                TextField("Search ...", text: $text)
-                    .padding(7)
-                    .padding(.horizontal, 25)
-                    .background(Color(.systemGray6))
-                    .cornerRadius(8)
-                    .overlay(
-                        HStack {
-                            Image(systemName: "magnifyingglass")
-                                .foregroundColor(.gray)
-                                .frame(minWidth: 0, maxWidth: .infinity, alignment: .leading)
-                                .padding(.leading, 8)
-                            
-                            if isEditing {
-                                Button(action: {
-                                    self.text = ""
-                                }) {
-                                    Image(systemName: "multiply.circle.fill")
-                                        .foregroundColor(.gray)
-                                        .padding(.trailing, 8)
-                                }
-                            }
-                        }
-                    )
-                    .padding(.horizontal, 10)
-                    .onTapGesture {self.isEditing = true}
-                
-                if isEditing {
-                    Button(action: {
-                        self.isEditing = false
-                        self.text = ""
-                        // Dismiss the keyboard
-                        UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
-                    }) {
-                        Text("Cancel")
-                    }
-                    .padding(.trailing, 10)
-                    .transition(.move(edge: .trailing))
-                    .animation(.default)
-                }
-                
-            }.frame(width: 380, height: 100)
-            .background(Color.flatDarkCardBackground)
-    }
-}
-
-//struct SearchBar_Previews: PreviewProvider {
-//    static var previews: some View {
-//        SearchBar(text: .constant(""))
 //    }
 //}
 
