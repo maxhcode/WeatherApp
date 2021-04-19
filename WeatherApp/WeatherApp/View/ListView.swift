@@ -13,13 +13,13 @@ struct ListView: View {
     
     var body: some View {
         NavigationView{
-        ZStack{
-            Color.flatDarkBackground.ignoresSafeArea()
-            VStack{
-                Box(country: "Germany", city: "Berlin", temperature: 10)
-                Box(country: "Germany", city: "Berlin", temperature: 10)
-                Box(country: "Germany", city: "Berlin", temperature: 10)
-            }
+            ZStack{
+                Color.flatDarkBackground.ignoresSafeArea()
+                VStack{
+                    Box(country: "Germany", city: "Berlin", temperature: 10)
+                    Box(country: "Germany", city: "Berlin", temperature: 10)
+                    Box(country: "Germany", city: "Berlin", temperature: 10)
+                }
             }.navigationBarTitle(Text("Weather List"))
         }
     }
@@ -33,19 +33,27 @@ struct ListView_Previews: PreviewProvider {
     }
 }
 
-
-
-
-
 struct Box: View {
     
     var country: String
     var city: String
     var temperature: Int
+    @State public var circleValue = 10.0
+    @State var colorCircle = Color.green
     
     var body: some View {
         ZStack{
-            HStack(spacing: 30){
+            HStack(spacing: 20){
+                
+                HStack(){
+                    Text(city)
+                        .font(.headline)
+                        .fontWeight(.bold)
+                        .lineLimit(2)
+                        .padding(.bottom, 5)
+                        .foregroundColor(.white)
+                        .font(.system(size: 15))
+                }
                 
                 ZStack {
                     Circle()
@@ -61,42 +69,63 @@ struct Box: View {
                             .font(.system(size: 20, weight: .bold))
                             .foregroundColor(.white)
                         
-                        Text("km")
+                        Text("°C")
                             .font(.caption)
                             .foregroundColor(.white)
                     }
                 }.frame(width: 70, height: 70, alignment: .center)
                 
+                
                 HStack(spacing: 10) {
-                    HStack(){
-                    Image(systemName: "mappin").foregroundColor(.white)
-                    Text(country)
-                        .font(.headline)
-                        .fontWeight(.bold)
-                        .lineLimit(2)
-                        .padding(.bottom, 5)
-                        .foregroundColor(.white)
-                        .font(.system(size: 15))
+                    VStack{
+                        Text("Incidence")
+                            .foregroundColor(.white)
+                            .font(.system(size: 14))
+                        Text("Value")
+                            .foregroundColor(.white)
+                            .font(.system(size: 14))
                     }
-                    Text(city)
-                        .padding(.bottom, 5)
-                        .foregroundColor(.white)
-                        .font(.system(size: 15))
-                    Image(systemName: "cloud.sun.fill")
-                        .foregroundColor(.white)
-                        .font(.system(size: 20))
-                    Text("Incidence: 20")
-                        .foregroundColor(.white)
-                        .font(.system(size: 15))
+                    ProgressView("Incidence Value", value: circleValue, total: 100)
+                        .progressViewStyle(
+                            CirclerPercentageProgressViewStyle2(circleColor: colorCircle))
                 }
                 
                 
-            }.frame(width: 380, height: 100, alignment: .center)
-            .background(Color.flatDarkCardBackground)
-            .clipShape(RoundedRectangle(cornerRadius: 15))
-        }
+            }
+            
+        }.frame(width: 380, height: 100, alignment: .center)
+        .background(Color.flatDarkCardBackground)
+        .clipShape(RoundedRectangle(cornerRadius: 15))
     }
 }
+
+struct CirclerPercentageProgressViewStyle2 : ProgressViewStyle {
+    
+    var circleColor: Color
+    
+    func makeBody(configuration: LinearProgressViewStyle.Configuration) -> some View {
+        VStack(spacing: 10) {
+            ZStack {
+                Circle()
+                    .stroke(lineWidth: 8.0)
+                    .opacity(0.3)
+                    .foregroundColor(Color.accentColor.opacity(0.5))
+                
+                Circle()
+                    .trim(from: 0.0, to: CGFloat(configuration.fractionCompleted ?? 0))
+                    .stroke(style: StrokeStyle(lineWidth: 8.0, lineCap: .round, lineJoin: .round))
+                    .foregroundColor(circleColor)
+                
+                Text("\(Int((configuration.fractionCompleted ?? 0) * 100))%")
+                    .font(.headline)
+                    .foregroundColor(Color.white)
+            }
+        } .frame(width: 70, height: 70, alignment: .center)
+        .padding()
+    }
+}
+
+
 
 //
 //struct Box_Previews: PreviewProvider {
@@ -111,7 +140,7 @@ extension UIColor {
     
     static let flatDarkBackground = UIColor(red: 36, green: 36, blue: 36)
     static let flatDarkCardBackground = UIColor(red: 46, green: 46, blue: 46)
-
+    
     convenience init(red: Int, green: Int, blue: Int, a: CGFloat = 1.0) {
         self.init(red: CGFloat(red) / 255.0, green: CGFloat(green) / 255.0, blue: CGFloat(blue) / 255.0, alpha: a)
     }
