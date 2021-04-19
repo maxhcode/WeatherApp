@@ -8,12 +8,20 @@
 import SwiftUI
 
 struct MainView: View {
-
+    init() {
+        UITabBar.appearance().barTintColor = UIColor.black
+        }
     var body: some View {
+        
         TabView {
-            WeatherView(text: .constant(""))
+            WeatherView(searchText: .constant(""))
                 .tabItem {
                     Label("Weather", systemImage: "triangle.circle")
+                }
+            
+            WeatherView2()
+                .tabItem {
+                    Label("Search", systemImage: "magnifyingglass")
                 }
             
             ListView(searchText: .constant(""))

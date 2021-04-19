@@ -74,15 +74,18 @@ struct Box: View {
                         .lineLimit(2)
                         .padding(.bottom, 5)
                         .foregroundColor(.white)
-                        .font(.system(size: 20))
+                        .font(.system(size: 15))
                     }
                     Text(city)
                         .padding(.bottom, 5)
                         .foregroundColor(.white)
-                        .font(.system(size: 20))
+                        .font(.system(size: 15))
                     Image(systemName: "cloud.sun.fill")
                         .foregroundColor(.white)
-                        .font(.system(size: 30))
+                        .font(.system(size: 20))
+                    Text("Incidence: 20")
+                        .foregroundColor(.white)
+                        .font(.system(size: 15))
                 }
                 
                 
