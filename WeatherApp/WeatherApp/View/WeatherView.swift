@@ -11,22 +11,35 @@ import CoreLocation
 import Combine
 
 struct WeatherView: View {
-    @State public var circleValue = 10.0
-    @State var colorCircle = Color.green
+    
     let timer = Timer.publish(every: 1.0, on: .main, in: .common).autoconnect()
     
-    init() {UINavigationBar.appearance().largeTitleTextAttributes = [.foregroundColor: UIColor.white]}
+    @StateObject var weatherViewModel = WeatherViewModel()
+    @ObservedObject var wm = WeatherManager()
+
+    @ObservedObject var lm = LocationManager()
+
+    var latitude: String  { return("\(lm.location?.latitude ?? 0)") }
+    var longitude: String { return("\(lm.location?.longitude ?? 0)") }
+    var country: String { return("\(lm.placemark?.country ?? "XXX")") } //.description
+    var city: String { return("\(lm.placemark?.locality ?? "XXX")") }
+    var status: String    { return("\(lm.status)") }
+    
+    init() {
+        UINavigationBar.appearance().largeTitleTextAttributes = [.foregroundColor: UIColor.white]
+        lm.updateLocation()
+    }
     
     var body: some View {
         NavigationView{
             ZStack{
                 Color.flatDarkBackground.ignoresSafeArea()
                 VStack(spacing: 50){
-                    HStack(spacing: 10){
-                        Text("County")
+                    VStack(spacing: 10){
+                        Text("County: \(self.country)")
                             .font(.system(size: 30, weight: .bold, design: .default))
                             .padding()
-                        Text("City")
+                        Text("City: \(self.city)")
                             .font(.system(size: 30, weight: .bold, design: .default))
                             .padding()
                     }
@@ -40,19 +53,19 @@ struct WeatherView: View {
                             .font(.system(size: 80))
                     }
                     HStack(spacing: 30){
-                        ProgressView("Incidence Value", value: circleValue, total: 100)
-                            .progressViewStyle(CirclerPercentageProgressViewStyle(circleColor: colorCircle))
+                        ProgressView("Incidence Value", value: weatherViewModel.circleValue, total: 100)
+                            .progressViewStyle(CirclerPercentageProgressViewStyle(circleColor: weatherViewModel.colorCircle))
                             .onReceive(timer) { _ in
-                                circleColorChange()
-                                if circleValue < 100 {circleValue += 2
-                                }
+                                weatherViewModel.circleColorChange()
+                                weatherViewModel.animationForCircle()
                             }
                     }
                 }
             }.navigationBarTitle("Current  Weather")
             .navigationBarItems(trailing:
                                     Button(action: {
-                                        print("This should be the location")
+                                        wm.fetchWeather(cityName: self.city)
+                                        lm.updateLocation()
                                     }) {
                                         Image(systemName: "location")
                                             .foregroundColor(.white)
@@ -62,38 +75,6 @@ struct WeatherView: View {
             .foregroundColor(.white)
         }
         
-    }
-    func circleColorChange(){
-        if circleValue == 10{
-            colorCircle = .green
-        }
-        if circleValue == 20{
-            colorCircle = .green
-        }
-        if circleValue == 30{
-            colorCircle = .green
-        }
-        if circleValue == 40{
-            colorCircle = .yellow
-        }
-        if circleValue == 50{
-            colorCircle = .yellow
-        }
-        if circleValue == 60{
-            colorCircle = .orange
-        }
-        if circleValue == 70{
-            colorCircle = .orange
-        }
-        if circleValue == 80{
-            colorCircle = .red
-        }
-        if circleValue == 90{
-            colorCircle = .red
-        }
-        if circleValue == 100{
-            colorCircle = .red
-        }
     }
 }
 

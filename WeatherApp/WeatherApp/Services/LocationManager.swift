@@ -15,10 +15,6 @@ class LocationManager: NSObject, ObservableObject {
   private let locationManager = CLLocationManager()
   let objectWillChange = PassthroughSubject<Void, Never>()
 
-      @Published var someVar: Int = 0 {
-        willSet { objectWillChange.send() }
-      }
-
   @Published var status: CLAuthorizationStatus? {
     willSet { objectWillChange.send() }
   }
@@ -33,15 +29,21 @@ class LocationManager: NSObject, ObservableObject {
     self.locationManager.delegate = self
     self.locationManager.desiredAccuracy = kCLLocationAccuracyBest
     self.locationManager.requestWhenInUseAuthorization()
-    self.locationManager.startUpdatingLocation()
+   // self.locationManager.startUpdatingLocation()
   }
 
+    func updateLocation(){
+        self.locationManager.startUpdatingLocation()
+    }
+    
     @Published var placemark: CLPlacemark? {
        willSet { objectWillChange.send() }
      }
 
      private func geocode() {
        guard let location = self.location else { return }
+        //The completionHandler is an async return value.
+        
        geocoder.reverseGeocodeLocation(location, completionHandler: { (places, error) in
          if error == nil {
            self.placemark = places?[0]
@@ -65,3 +67,5 @@ extension LocationManager: CLLocationManagerDelegate {
         self.geocode()
     }
 }
+
+

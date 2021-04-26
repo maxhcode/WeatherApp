@@ -14,26 +14,26 @@ import CoreLocation
 
 //https://stackoverflow.com/questions/47835946/the-apps-info-plist-must-contain-an-nslocationwheninuseusagedescription-key-wit
 
-struct ContentView: View {
-    @ObservedObject var lm = LocationManager()
-
-    var someVar: String  { return("\(lm.someVar ?? 0)") }
-
-    var body: some View {
-        VStack {
-            Text("someVar: \(self.someVar)")
-            Button(action: { self.lm.someVar = self.lm.someVar + 2 }) {
-              Text("Add more")
-            }
-        }
-    }
-}
-
-struct ContentView_Previews: PreviewProvider {
-    static var previews: some View {
-        ContentView()
-    }
-}
+//struct ContentView: View {
+//    @ObservedObject var lm = LocationManager()
+//
+//    var someVar: String  { return("\(lm.someVar ?? 0)") }
+//
+//    var body: some View {
+//        VStack {
+//            Text("someVar: \(self.someVar)")
+//            Button(action: { self.lm.someVar = self.lm.someVar + 2 }) {
+//              Text("Add more")
+//            }
+//        }
+//    }
+//}
+//
+//struct ContentView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        ContentView()
+//    }
+//}
 
 struct CityListScene: View {
     @ObservedObject var lm = LocationManager()

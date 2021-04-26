@@ -14,6 +14,7 @@ struct SearchWeatherView: View {
     @State var predictedValue: Array<String> = []
     @State var searchText: String = "" //the .isEmpty only works if the strign cotains nothing thats why ""
     
+    
     init() {
             //Use this if NavigationBarTitle is with Large Font
             UINavigationBar.appearance().largeTitleTextAttributes = [.foregroundColor: UIColor.white]
@@ -42,6 +43,7 @@ struct SearchWeatherView: View {
 }
 
 struct Predict: View{
+    @StateObject var searchWeatherViewModel = SearchWeatherViewModel()
     /// All possible predictable values. Can be only one.
     @Binding var predictableValues: Array<String>
     
@@ -132,6 +134,7 @@ struct Predict: View{
             //The timer is therefore to keep repating functions all the time over and over again to keep chekcing
             Timer.scheduledTimer(withTimeInterval: self.predictionInterval ?? 1, repeats: true) { timer in
                 self.matchInput()
+                searchWeatherViewModel.input = self.input
                 //If it is not being edited anymore stop the timer
                 if self.isBeingEdited == false {
                     timer.invalidate()
