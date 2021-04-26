@@ -45,7 +45,7 @@ struct WeatherView: View {
                             .padding()
                     }
                     HStack{
-                        Text("Cloudy")
+                        Text(viewModel.weatherDescription)
                             .font(.system(size: 25, weight: .bold, design: .default))
                     }
                     HStack(spacing: 70){
@@ -54,7 +54,7 @@ struct WeatherView: View {
                             .font(.system(size: 60))
                             .bold()
                         }
-                        Image(systemName: "cloud.sun.fill")
+                        Image(systemName: viewModel.weatherIcon)
                             .foregroundColor(.white)
                             .font(.system(size: 80))
                     }

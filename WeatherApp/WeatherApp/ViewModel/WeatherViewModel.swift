@@ -11,12 +11,12 @@ import SwiftUI
 
 private let defaultIcon = "?"
 private let iconMap = [
-    "Drizzle": "sun.max",
-    "Thunderstorm": "sun.max",
-    "Rain": "sun.max",
-    "Snow": "sun.max",
-    "Clear": "sun.max",
-    "Clouds": "sun.max",
+    "Drizzle": "cloud.drizzle.fill",
+    "Thunderstorm": "cloud.bolt.fill",
+    "Rain": "cloud.rain.fill",
+    "Snow": "cloud.snow.fill",
+    "Clear": "sun.max.fill",
+    "Clouds": "cloud.fill",
 ]
 
 public class WeatherViewModel2: ObservableObject {
