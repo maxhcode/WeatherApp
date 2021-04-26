@@ -9,10 +9,51 @@ import Foundation
 import SwiftUI
 
 
+private let defaultIcon = "?"
+private let iconMap = [
+    "Drizzle": "sun.max",
+    "Thunderstorm": "sun.max",
+    "Rain": "sun.max",
+    "Snow": "sun.max",
+    "Clear": "sun.max",
+    "Clouds": "sun.max",
+]
+
+public class WeatherViewModel2: ObservableObject {
+    @Published var cityName: String = "City Name"
+    @Published var temperature: String = "--"
+    @Published var weatherDescription: String = "--"
+    @Published var weatherIcon: String = defaultIcon
+    
+    public let weatherService: WeatherService
+    
+    public init(weatherService: WeatherService){
+        self.weatherService = weatherService
+        //self.weatherService.makeDataRequest(City: "Hamburg")
+    }
+    
+    func requestWeather(City: String){
+        weatherService.makeDataRequest(City: City)
+    }
+    
+    public func refresh(){
+        weatherService.loadWeatherData { weather in
+            DispatchQueue.main.async {
+                self.cityName = weather.city
+                self.temperature = "\(weather.temperature)°C"
+                self.weatherDescription = weather.description.capitalized
+                self.weatherIcon = iconMap[weather.iconName] ?? defaultIcon
+            }
+        }
+    }
+    
+}
+
 class WeatherViewModel: ObservableObject{
     @Published var circleValue = 10.0
     @Published var colorCircle = Color.green
     
+
     func animationForCircle(){
         if circleValue < 100 {
             circleValue += 2
