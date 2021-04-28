@@ -1,5 +1,5 @@
 //
-//  ContentView.swift
+//  CurrentWeatherView.swift
 //  WeatherApp
 //
 //  Created by Maximilian Hues on 18.04.21.
@@ -7,13 +7,13 @@
 
 import SwiftUI
 
-struct WeatherView: View {
+struct CurrentWeatherView: View {
     
-    @StateObject var viewModel: WeatherViewModel
-    @ObservedObject var locationManager = LocationManager()
+    @StateObject var vm: WeatherViewModel
+    @ObservedObject var locationManager = LocationService()
 
-    var country: String { return("\(locationManager.locationInformation?.country ?? "---")") }
-    var city: String { return("\(locationManager.locationInformation?.locality ?? "---")") }
+    var country: String { ("\(locationManager.locationInformation?.country ?? "---")") }
+    var city: String { ("\(locationManager.locationInformation?.locality ?? "---")") }
     
     var body: some View {
         NavigationView{
@@ -21,44 +21,44 @@ struct WeatherView: View {
                 Color.flatDarkBackground.ignoresSafeArea()
                 VStack(spacing: 50){
                     VStack(spacing: 10){
-                        Text("County: \(self.country)")
+                        Text("County: \(country)")
                             .font(.system(size: 30, weight: .bold, design: .default))
                             .padding()
-                        Text("City: \(self.city)")
+                        Text("City: \(city)")
                             .font(.system(size: 30, weight: .bold, design: .default))
                             .padding()
                     }
                     HStack{
-                        Text(viewModel.weatherDescription)
+                        Text(vm.weatherDescription)
                             .font(.system(size: 25, weight: .bold, design: .default))
                     }
                     HStack(spacing: 70){
                         VStack{
-                        Text("\(viewModel.temperature)")
+                        Text("\(vm.temperature)")
                             .font(.system(size: 60))
                             .bold()
                         }
-                        Image(systemName: viewModel.weatherIcon)
+                        Image(systemName: vm.weatherIcon)
                             .foregroundColor(.white)
                             .font(.system(size: 80))
                     }
                     HStack(spacing: 30){
-                        ProgressView("Incidence Value", value: viewModel.circleValue, total: 100)
-                            .progressViewStyle(CirclerPercentageProgressViewStyle(circleColor: viewModel.colorCircle))
-                            .onReceive(viewModel.timer) { _ in
-                                viewModel.requestWeather(City: self.city)
+                        ProgressView("Incidence Value", value: vm.circleValue, total: 100)
+                            .progressViewStyle(IncidenceProgressBarCircled(circleColor: vm.colorCircle))
+                            .onReceive(vm.timer) { _ in
+                                vm.requestWeather(city: city)
                                 locationManager.updateLocation()
-                                viewModel.circleColorChange()
-                                viewModel.animationForCircle()
+                                vm.circleColorChange()
+                                vm.animationForCircle()
                             }
                     }
                 }
             }
-            .onAppear(perform: viewModel.refresh)
+            .onAppear(perform: vm.refresh)
             .navigationBarTitle("Current  Weather")
             .navigationBarItems(trailing:
                                     Button(action: {
-                                        viewModel.requestWeather(City: self.city)
+                                        vm.requestWeather(city: city)
                                         locationManager.updateLocation()
                                     }) {
                                         Image(systemName: "location")
@@ -68,17 +68,16 @@ struct WeatherView: View {
             )
             .foregroundColor(.white)
         }
-        
     }
 }
 
-struct WeatherView_Previews: PreviewProvider {
+struct CurrentWeatherView_Previews: PreviewProvider {
     static var previews: some View {
-        WeatherView(viewModel: WeatherViewModel(weatherService: WeatherService()))
+        CurrentWeatherView(vm: WeatherViewModel(weatherService: WeatherService()))
     }
 }
 
-struct CirclerPercentageProgressViewStyle : ProgressViewStyle {
+struct IncidenceProgressBarCircled : ProgressViewStyle {
     
     var circleColor: Color
     
@@ -98,7 +97,7 @@ struct CirclerPercentageProgressViewStyle : ProgressViewStyle {
                     .stroke(style: StrokeStyle(lineWidth: 20.0, lineCap: .round, lineJoin: .round))
                     .foregroundColor(circleColor)
                 
-                Text("\(Int((configuration.fractionCompleted ?? 0) * 100))%")
+                Text("\(Int((configuration.fractionCompleted ?? 0) * 100))(In.)")
                     .font(.headline)
                     .foregroundColor(Color.white)
             }

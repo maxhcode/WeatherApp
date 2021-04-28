@@ -88,7 +88,7 @@ struct Box: View{
                             .foregroundColor(.white)
                         
                     }.onAppear{
-                        viewModel.requestWeather(City: city)
+                        viewModel.requestWeather(city: city)
                         viewModel.refresh()
                     }
                 }.frame(width: 70, height: 70, alignment: .center)

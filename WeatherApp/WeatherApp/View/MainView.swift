@@ -14,7 +14,7 @@ struct MainView: View {
     var body: some View {
         
         TabView {
-            WeatherView(viewModel: WeatherViewModel(weatherService: WeatherService()))
+            CurrentWeatherView(vm: WeatherViewModel(weatherService: WeatherService()))
                 .tabItem {
                     Label("Weather", systemImage: "triangle.circle")
                 }

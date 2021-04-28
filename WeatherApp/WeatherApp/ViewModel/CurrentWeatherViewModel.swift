@@ -1,5 +1,5 @@
 //
-//  WeatheerViewModel.swift
+//  CurrentWeatherViewModel.swift
 //  WeatherApp
 //
 //  Created by Maximilian Hues on 25.04.21.
@@ -7,9 +7,6 @@
 
 import Foundation
 import SwiftUI
-
-
-
 
 public class WeatherViewModel: ObservableObject {
     @Published var iconMap = [
@@ -35,8 +32,8 @@ public class WeatherViewModel: ObservableObject {
         self.weatherService = weatherService
     }
     
-    func requestWeather(City: String){
-        weatherService.makeDataRequest(City: City)
+    func requestWeather(city: String){
+        weatherService.makeDataRequest(city: city)
     }
     
     public func refresh(){
