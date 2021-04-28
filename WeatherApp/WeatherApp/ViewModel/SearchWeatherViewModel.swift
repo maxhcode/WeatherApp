@@ -10,5 +10,14 @@ import Foundation
 
 
 class SearchWeatherViewModel: ObservableObject{
-    @Published var input: String = "" 
+    @Published var input: String = ""
+   // @Published var weatherList = ["Munich"]
+    @Published var array = []
+    
+    
+}
+
+
+class ListViewModel: ObservableObject{
+    @Published var weatherList = ["Munich"]
 }

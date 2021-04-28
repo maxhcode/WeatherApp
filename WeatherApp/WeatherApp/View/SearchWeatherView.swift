@@ -10,16 +10,17 @@ import SwiftUI
 
 struct SearchWeatherView: View {
     //    @State var textFieldInput: String = "F"
-    @State var predictableValues: Array<String> = ["First", "Second", "Third", "Fourth Second"]
+    @State var predictableValues: Array<String> = ["Berlin", "Hamburg", "Paris", "London", "Londow"]
     @State var predictedValue: Array<String> = []
     @State var searchText: String = "" //the .isEmpty only works if the strign cotains nothing thats why ""
-    
+    @StateObject var vm = SearchWeatherViewModel()
+    @ObservedObject var listViewModel = ListViewModel()
     
     init() {
-            UINavigationBar.appearance().largeTitleTextAttributes = [.foregroundColor: UIColor.white]
-            UITableView.appearance().backgroundColor = UIColor.flatDarkBackground
-        }
-
+        UINavigationBar.appearance().largeTitleTextAttributes = [.foregroundColor: UIColor.white]
+        UITableView.appearance().backgroundColor = UIColor.flatDarkBackground
+    }
+    
     
     var body: some View {
         NavigationView{
@@ -29,34 +30,48 @@ struct SearchWeatherView: View {
                     Predict(predictableValues: self.$predictableValues, predictedValues: self.$predictedValue,input: $searchText).textFieldStyle(RoundedBorderTextFieldStyle())
                     
                     //This is going thorugh an empty list if something is added it will be shwon in a list view
-                
+                    
                     List{
                         ForEach(self.predictedValue, id: \.self){ value in
                             HStack{
-                            Text(value)
-                                .foregroundColor(.white)
-                            Spacer()
-                            Button {
-                                print("Button pressed")
-                            } label: {
-                                Text("Press Me")
+                                Text(value)
                                     .foregroundColor(.white)
-                            }
+                                    .font(.system(size: 21))
+                                Spacer()
+                                Button(action: {
+                                    listViewModel.weatherList.append(value)
+                                    print(value)
+                                }) {
+                                    ZStack {
+                                        Circle()
+                                            .foregroundColor(.green)
+                                            .frame(width: 40, height: 50)
+                                        
+                                        Image(systemName: "plus.circle")
+                                            .imageScale(.large)
+                                            .foregroundColor(.white)
+                                    }
+                                }
+                                .buttonStyle(BorderlessButtonStyle())
                             }
                             .contentShape(Rectangle())
-                            }
-                        .frame(width: 70, height: 50, alignment: .center)
+                        }
                         .listRowBackground(Color.flatDarkCardBackground)
                         .background(Color.flatDarkCardBackground)
-                       
-                        }
                         
+                    }.listStyle(GroupedListStyle())
+                    
                 }
             }.navigationBarTitle(Text("Weather Search"))
-        }
+        }.environmentObject(vm)
     }
 }
 
+struct SearchWeatherView_Previews: PreviewProvider {
+    static var previews: some View {
+        SearchWeatherView()
+    }
+}
 
 
 struct Predict: View{
@@ -136,7 +151,7 @@ struct Predict: View{
         .frame(width: 380, height: 100)
         .background(Color.flatDarkCardBackground)
     }
-   
+    
     
     
     /// Schedules prediction based on interval and only a if input is being made
@@ -208,12 +223,8 @@ struct Predict: View{
 }
 
 
-struct SearchWeatherView_Previews: PreviewProvider {
-    static var previews: some View {
-        SearchWeatherView()
-    }
-}
-    
-    
-    
-    
+
+
+
+
+

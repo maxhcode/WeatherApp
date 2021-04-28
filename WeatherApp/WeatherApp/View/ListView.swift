@@ -11,35 +11,49 @@ import SwiftUI
 struct ListView: View {
     init() {UINavigationBar.appearance().largeTitleTextAttributes = [.foregroundColor: UIColor.white]}
     
+    @EnvironmentObject var searchWeatherViewModel: SearchWeatherViewModel
+    
+    @StateObject var listViewModel = ListViewModel()
+    
     var body: some View {
         NavigationView{
             ZStack{
                 Color.flatDarkBackground.ignoresSafeArea()
                 VStack{
-                    Box(country: "Germany", city: "Berlin", temperature: 10)
-                    Box(country: "Germany", city: "Berlin", temperature: 10)
-                    Box(country: "Germany", city: "Berlin", temperature: 10)
+                    ScrollView{
+                        if listViewModel.weatherList.isEmpty == false{
+                            ForEach(listViewModel.weatherList, id: \.self) { city in
+                                Box(city: city as! String , viewModel: WeatherViewModel2(weatherService: WeatherService()))
+                            }
+                        }
+                        
+                        Box(city: "Berlin", viewModel: WeatherViewModel2(weatherService: WeatherService()))
+                        Box(city: "Paris", viewModel: WeatherViewModel2(weatherService: WeatherService()))
+                        Box(city: "Hamburg", viewModel: WeatherViewModel2(weatherService: WeatherService()))
+                    }
                 }
             }.navigationBarTitle(Text("Weather List"))
-        }
+            
+        }.environmentObject(listViewModel)
     }
 }
+
 
 
 struct ListView_Previews: PreviewProvider {
     static var previews: some View {
         ListView()
-        
     }
 }
 
-struct Box: View {
+struct Box: View{
     
-    var country: String
     var city: String
-    var temperature: Int
+    var temperature = "--"
     @State public var circleValue = 10.0
     @State var colorCircle = Color.green
+    
+    @ObservedObject var viewModel: WeatherViewModel2
     
     var body: some View {
         ZStack{
@@ -65,13 +79,13 @@ struct Box: View {
                             )
                         )
                     HStack {
-                        Text("\(temperature)")
+                        Text("\(viewModel.temperature)")
                             .font(.system(size: 20, weight: .bold))
                             .foregroundColor(.white)
                         
-                        Text("°C")
-                            .font(.caption)
-                            .foregroundColor(.white)
+                    }.onAppear{
+                        viewModel.requestWeather(City: city)
+                        viewModel.refresh()
                     }
                 }.frame(width: 70, height: 70, alignment: .center)
                 
