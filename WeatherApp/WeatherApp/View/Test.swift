@@ -40,14 +40,14 @@ struct CityListScene: View {
 
     var latitude: String  { return("\(lm.location?.latitude ?? 0)") }
     var longitude: String { return("\(lm.location?.longitude ?? 0)") }
-    var placemark: String { return("\(lm.placemark?.description ?? "XXX")") }
+  //  var placemark: String { return("\(lm.placemark?.description ?? "XXX")") }
     var status: String    { return("\(lm.status)") }
 
     var body: some View {
         VStack {
             Text("Latitude: \(self.latitude)")
             Text("Longitude: \(self.longitude)")
-            Text("Placemark: \(self.placemark)")
+         //   Text("Placemark: \(self.placemark)")
             Text("Status: \(self.status)")
         }
     }

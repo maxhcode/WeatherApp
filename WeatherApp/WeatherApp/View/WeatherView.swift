@@ -6,30 +6,14 @@
 //
 
 import SwiftUI
-import Foundation
-import CoreLocation
-import Combine
 
 struct WeatherView: View {
     
-    let timer = Timer.publish(every: 1.0, on: .main, in: .common).autoconnect()
-    
-    @StateObject var weatherViewModel = WeatherViewModel()
-    //@ObservedObject var wm = WeatherManager()
+    @StateObject var viewModel: WeatherViewModel
+    @ObservedObject var locationManager = LocationManager()
 
-    @ObservedObject var viewModel: WeatherViewModel2
-    @ObservedObject var lm = LocationManager()
-
-    var latitude: String  { return("\(lm.location?.latitude ?? 0)") }
-    var longitude: String { return("\(lm.location?.longitude ?? 0)") }
-    var country: String { return("\(lm.placemark?.country ?? "XXX")") } //.description
-    var city: String { return("\(lm.placemark?.locality ?? "XXX")") }
-    var status: String    { return("\(lm.status)") }
-    
-//    init() {
-//       // UINavigationBar.appearance().largeTitleTextAttributes = [.foregroundColor: UIColor.white]
-//        //lm.updateLocation()
-//    }
+    var country: String { return("\(locationManager.locationInformation?.country ?? "---")") }
+    var city: String { return("\(locationManager.locationInformation?.locality ?? "---")") }
     
     var body: some View {
         NavigationView{
@@ -59,23 +43,23 @@ struct WeatherView: View {
                             .font(.system(size: 80))
                     }
                     HStack(spacing: 30){
-                        ProgressView("Incidence Value", value: weatherViewModel.circleValue, total: 100)
-                            .progressViewStyle(CirclerPercentageProgressViewStyle(circleColor: weatherViewModel.colorCircle))
-                            .onReceive(timer) { _ in
+                        ProgressView("Incidence Value", value: viewModel.circleValue, total: 100)
+                            .progressViewStyle(CirclerPercentageProgressViewStyle(circleColor: viewModel.colorCircle))
+                            .onReceive(viewModel.timer) { _ in
                                 viewModel.requestWeather(City: self.city)
-                                lm.updateLocation()
-                                weatherViewModel.circleColorChange()
-                                weatherViewModel.animationForCircle()
+                                locationManager.updateLocation()
+                                viewModel.circleColorChange()
+                                viewModel.animationForCircle()
                             }
                     }
                 }
             }
-            .onAppear(perform: viewModel.refresh) //NEW
+            .onAppear(perform: viewModel.refresh)
             .navigationBarTitle("Current  Weather")
             .navigationBarItems(trailing:
                                     Button(action: {
-                                        //wm.fetchWeather(cityName: self.city)
-                                        lm.updateLocation()
+                                        viewModel.requestWeather(City: self.city)
+                                        locationManager.updateLocation()
                                     }) {
                                         Image(systemName: "location")
                                             .foregroundColor(.white)
@@ -90,7 +74,7 @@ struct WeatherView: View {
 
 struct WeatherView_Previews: PreviewProvider {
     static var previews: some View {
-        WeatherView(viewModel: WeatherViewModel2(weatherService: WeatherService()))
+        WeatherView(viewModel: WeatherViewModel(weatherService: WeatherService()))
     }
 }
 

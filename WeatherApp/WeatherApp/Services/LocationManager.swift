@@ -36,7 +36,7 @@ class LocationManager: NSObject, ObservableObject {
         self.locationManager.startUpdatingLocation()
     }
     
-    @Published var placemark: CLPlacemark? {
+    @Published var locationInformation: CLPlacemark? {
        willSet { objectWillChange.send() }
      }
 
@@ -46,9 +46,9 @@ class LocationManager: NSObject, ObservableObject {
         
        geocoder.reverseGeocodeLocation(location, completionHandler: { (places, error) in
          if error == nil {
-           self.placemark = places?[0]
+           self.locationInformation = places?[0]
          } else {
-           self.placemark = nil
+           self.locationInformation = nil
          }
        })
      }

@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		D550BE5326399EC6009E4299 /* ListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D550BE5226399EC6009E4299 /* ListViewModel.swift */; };
 		D59F71B0262C3EF900C47995 /* WeatherAppApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = D59F71AF262C3EF900C47995 /* WeatherAppApp.swift */; };
 		D59F71B2262C3EF900C47995 /* WeatherView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D59F71B1262C3EF900C47995 /* WeatherView.swift */; };
 		D59F71B4262C3EFA00C47995 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D59F71B3262C3EFA00C47995 /* Assets.xcassets */; };
@@ -24,6 +25,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		D550BE5226399EC6009E4299 /* ListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListViewModel.swift; sourceTree = "<group>"; };
 		D59F71AC262C3EF900C47995 /* WeatherApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WeatherApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D59F71AF262C3EF900C47995 /* WeatherAppApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherAppApp.swift; sourceTree = "<group>"; };
 		D59F71B1262C3EF900C47995 /* WeatherView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherView.swift; sourceTree = "<group>"; };
@@ -110,6 +112,7 @@
 			children = (
 				D5FCBE992635A19700A1636C /* SearchWeatherViewModel.swift */,
 				D5FCBE952635965400A1636C /* WeatherViewModel.swift */,
+				D550BE5226399EC6009E4299 /* ListViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -209,6 +212,7 @@
 				D5B0C63C262DC509004EB762 /* LocationManager.swift in Sources */,
 				D5FCBE9E2635A81500A1636C /* WeatherManager.swift in Sources */,
 				D5A4B504262C4ED9000E65AD /* MainView.swift in Sources */,
+				D550BE5326399EC6009E4299 /* ListViewModel.swift in Sources */,
 				D5FCBE9A2635A19700A1636C /* SearchWeatherViewModel.swift in Sources */,
 				D59F71B0262C3EF900C47995 /* WeatherAppApp.swift in Sources */,
 				D5B0C635262C7370004EB762 /* SearchWeatherView.swift in Sources */,

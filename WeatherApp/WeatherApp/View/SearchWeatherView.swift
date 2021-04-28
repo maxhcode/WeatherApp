@@ -10,9 +10,10 @@ import SwiftUI
 
 struct SearchWeatherView: View {
     //    @State var textFieldInput: String = "F"
-    @State var predictableValues: Array<String> = ["Berlin", "Hamburg", "Paris", "London", "Londow"]
+    @State var predictableValues: Array<String> = ["Berlin", "Hamburg", "Paris", "London"]
     @State var predictedValue: Array<String> = []
     @State var searchText: String = "" //the .isEmpty only works if the strign cotains nothing thats why ""
+    
     @StateObject var vm = SearchWeatherViewModel()
     @ObservedObject var listViewModel = ListViewModel()
     
@@ -21,16 +22,12 @@ struct SearchWeatherView: View {
         UITableView.appearance().backgroundColor = UIColor.flatDarkBackground
     }
     
-    
     var body: some View {
         NavigationView{
             ZStack{
                 Color.flatDarkBackground.ignoresSafeArea()
                 VStack{
                     Predict(predictableValues: self.$predictableValues, predictedValues: self.$predictedValue,input: $searchText).textFieldStyle(RoundedBorderTextFieldStyle())
-                    
-                    //This is going thorugh an empty list if something is added it will be shwon in a list view
-                    
                     List{
                         ForEach(self.predictedValue, id: \.self){ value in
                             HStack{
@@ -166,7 +163,6 @@ struct Predict: View{
             //The timer is therefore to keep repating functions all the time over and over again to keep chekcing
             Timer.scheduledTimer(withTimeInterval: self.predictionInterval ?? 1, repeats: true) { timer in
                 self.matchInput()
-                searchWeatherViewModel.input = self.input
                 //If it is not being edited anymore stop the timer
                 if self.isBeingEdited == false {
                     timer.invalidate()

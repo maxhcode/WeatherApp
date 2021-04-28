@@ -9,27 +9,30 @@ import Foundation
 import SwiftUI
 
 
-private let defaultIcon = "?"
-private let iconMap = [
-    "Drizzle": "cloud.drizzle.fill",
-    "Thunderstorm": "cloud.bolt.fill",
-    "Rain": "cloud.rain.fill",
-    "Snow": "cloud.snow.fill",
-    "Clear": "sun.max.fill",
-    "Clouds": "cloud.fill",
-]
 
-public class WeatherViewModel2: ObservableObject {
+
+public class WeatherViewModel: ObservableObject {
+    @Published var iconMap = [
+        "Drizzle": "cloud.drizzle.fill",
+        "Thunderstorm": "cloud.bolt.fill",
+        "Rain": "cloud.rain.fill",
+        "Snow": "cloud.snow.fill",
+        "Clear": "sun.max.fill",
+        "Clouds": "cloud.fill",
+    ]
     @Published var cityName: String = "City Name"
     @Published var temperature: String = "--"
     @Published var weatherDescription: String = "--"
-    @Published var weatherIcon: String = defaultIcon
+    @Published var weatherIcon: String = "?"
+    
+    @Published var circleValue = 10.0
+    @Published var colorCircle = Color.green
+    @Published var timer = Timer.publish(every: 1.0, on: .main, in: .common).autoconnect()
     
     public let weatherService: WeatherService
     
     public init(weatherService: WeatherService){
         self.weatherService = weatherService
-        //self.weatherService.makeDataRequest(City: "Hamburg")
     }
     
     func requestWeather(City: String){
@@ -42,18 +45,11 @@ public class WeatherViewModel2: ObservableObject {
                 self.cityName = weather.city
                 self.temperature = "\(weather.temperature)°C"
                 self.weatherDescription = weather.description.capitalized
-                self.weatherIcon = iconMap[weather.iconName] ?? defaultIcon
+                self.weatherIcon = self.iconMap[weather.iconName] ?? "?"
             }
         }
     }
     
-}
-
-class WeatherViewModel: ObservableObject{
-    @Published var circleValue = 10.0
-    @Published var colorCircle = Color.green
-    
-
     func animationForCircle(){
         if circleValue < 100 {
             circleValue += 2
@@ -92,6 +88,7 @@ class WeatherViewModel: ObservableObject{
             colorCircle = .red
         }
     }
+    
 }
 
 

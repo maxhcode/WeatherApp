@@ -3,7 +3,7 @@ import CoreLocation
 
 struct WeatherView2: View {
     
-    @ObservedObject var viewModel: WeatherViewModel2
+    @ObservedObject var viewModel: WeatherViewModel
     
     var body: some View{
         VStack{
@@ -23,6 +23,6 @@ struct WeatherView2: View {
 
 struct WeatherView2_Previews: PreviewProvider {
     static var previews: some View{
-        WeatherView2(viewModel: WeatherViewModel2(weatherService: WeatherService()))
+        WeatherView2(viewModel: WeatherViewModel(weatherService: WeatherService()))
     }
 }
