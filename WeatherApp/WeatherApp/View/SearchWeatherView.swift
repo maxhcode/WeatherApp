@@ -16,10 +16,8 @@ struct SearchWeatherView: View {
     
     
     init() {
-            //Use this if NavigationBarTitle is with Large Font
             UINavigationBar.appearance().largeTitleTextAttributes = [.foregroundColor: UIColor.white]
-            //Use this if NavigationBarTitle is with displayMode = .inline
-//            UINavigationBar.appearance().titleTextAttributes = [.foregroundColor: UIColor.red]
+            UITableView.appearance().backgroundColor = UIColor.flatDarkBackground
         }
 
     
@@ -31,16 +29,35 @@ struct SearchWeatherView: View {
                     Predict(predictableValues: self.$predictableValues, predictedValues: self.$predictedValue,input: $searchText).textFieldStyle(RoundedBorderTextFieldStyle())
                     
                     //This is going thorugh an empty list if something is added it will be shwon in a list view
+                
                     List{
                         ForEach(self.predictedValue, id: \.self){ value in
+                            HStack{
                             Text(value)
+                                .foregroundColor(.white)
+                            Spacer()
+                            Button {
+                                print("Button pressed")
+                            } label: {
+                                Text("Press Me")
+                                    .foregroundColor(.white)
+                            }
+                            }
+                            .contentShape(Rectangle())
+                            }
+                        .frame(width: 70, height: 50, alignment: .center)
+                        .listRowBackground(Color.flatDarkCardBackground)
+                        .background(Color.flatDarkCardBackground)
+                       
                         }
-                    }
+                        
                 }
             }.navigationBarTitle(Text("Weather Search"))
         }
     }
 }
+
+
 
 struct Predict: View{
     @StateObject var searchWeatherViewModel = SearchWeatherViewModel()
