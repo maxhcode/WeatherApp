@@ -23,7 +23,7 @@ public class WeatherService: NSObject {
         
         URLSession.shared.dataTask(with: url) { data, response, error in
             guard error == nil, let data = data else { return }
-            if let response = try? JSONDecoder().decode(APIResponse.self, from: data){
+            if let response = try? JSONDecoder().decode(ApiResponse.self, from: data){
                 self.completionHandler?(Weather(response: response))
             }
         }.resume()

@@ -8,17 +8,17 @@
 import Foundation
 
 
-struct APIResponse: Decodable{
+struct ApiResponse: Decodable{
     let name: String
-    let main: APIMain
-    let weather: [APIWeather]
+    let main: ApiResponseMain
+    let weather: [ApiResponseWeather]
 }
 
-struct APIMain: Decodable{
+struct ApiResponseMain: Decodable{
     let temp: Double
 }
 
-struct APIWeather: Decodable{
+struct ApiResponseWeather: Decodable{
     let description: String
     let iconName: String
     
@@ -34,7 +34,7 @@ public struct Weather{
     let description: String
     let iconName: String
     
-    init(response: APIResponse) {
+    init(response: ApiResponse) {
         city = response.name
         temperature = "\(Int(response.main.temp))"
         description = response.weather.first?.description ?? ""

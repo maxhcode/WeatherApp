@@ -20,7 +20,6 @@
 		D5FCBE962635965400A1636C /* CurrentWeatherViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5FCBE952635965400A1636C /* CurrentWeatherViewModel.swift */; };
 		D5FCBE9A2635A19700A1636C /* SearchWeatherViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5FCBE992635A19700A1636C /* SearchWeatherViewModel.swift */; };
 		D5FCBE9E2635A81500A1636C /* WeatherService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5FCBE9D2635A81500A1636C /* WeatherService.swift */; };
-		D5FCBEA12635BF6100A1636C /* Test2.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5FCBEA02635BF6100A1636C /* Test2.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -39,7 +38,6 @@
 		D5FCBE952635965400A1636C /* CurrentWeatherViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentWeatherViewModel.swift; sourceTree = "<group>"; };
 		D5FCBE992635A19700A1636C /* SearchWeatherViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = SearchWeatherViewModel.swift; path = WeatherApp/ViewModel/SearchWeatherViewModel.swift; sourceTree = SOURCE_ROOT; };
 		D5FCBE9D2635A81500A1636C /* WeatherService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherService.swift; sourceTree = "<group>"; };
-		D5FCBEA02635BF6100A1636C /* Test2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Test2.swift; path = WeatherApp/View/Test2.swift; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -95,7 +93,6 @@
 		D5A4B4F8262C406C000E65AD /* View */ = {
 			isa = PBXGroup;
 			children = (
-				D5FCBEA02635BF6100A1636C /* Test2.swift */,
 				D5A4B503262C4ED9000E65AD /* MainView.swift */,
 				D59F71B1262C3EF900C47995 /* CurrentWeatherView.swift */,
 				D5A4B500262C40E9000E65AD /* ListView.swift */,
@@ -200,7 +197,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D5FCBEA12635BF6100A1636C /* Test2.swift in Sources */,
 				D5A4B501262C40E9000E65AD /* ListView.swift in Sources */,
 				D5FCBE962635965400A1636C /* CurrentWeatherViewModel.swift in Sources */,
 				D59F71B2262C3EF900C47995 /* CurrentWeatherView.swift in Sources */,

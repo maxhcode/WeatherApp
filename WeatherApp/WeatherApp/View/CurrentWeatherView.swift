@@ -16,8 +16,8 @@ struct CurrentWeatherView: View {
     var city: String { ("\(locationManager.locationInformation?.locality ?? "---")") }
     
     var body: some View {
-        NavigationView{
-            ZStack{
+        NavigationView {
+            ZStack {
                 Color.flatDarkBackground.ignoresSafeArea()
                 VStack(spacing: 50){
                     VStack(spacing: 10){
@@ -47,14 +47,16 @@ struct CurrentWeatherView: View {
                             .progressViewStyle(IncidenceProgressBarCircled(circleColor: vm.colorCircle))
                             .onReceive(vm.timer) { _ in
                                 vm.requestWeather(city: city)
-                                locationManager.updateLocation()
                                 vm.circleColorChange()
                                 vm.animationForCircle()
                             }
                     }
                 }
             }
-            .onAppear(perform: vm.refresh)
+                .onAppear{
+                    vm.refresh()
+                    locationManager.updateLocation()
+                }
             .navigationBarTitle("Current  Weather")
             .navigationBarItems(trailing:
                                     Button(action: {

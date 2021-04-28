@@ -13,7 +13,7 @@ struct ListView: View {
     
     @ObservedObject var weatherViewModel = WeatherViewModel(weatherService: WeatherService())
     @EnvironmentObject var searchWeatherViewModel: SearchWeatherViewModel
-    @StateObject var listViewModel = ListViewModel()
+    @StateObject var vm = ListViewModel()
     
     var body: some View {
         NavigationView{
@@ -21,7 +21,7 @@ struct ListView: View {
                 Color.flatDarkBackground.ignoresSafeArea()
                 VStack{
                     ScrollView{
-                        ForEach(listViewModel.weatherList, id: \.self) { city in
+                        ForEach(vm.weatherList, id: \.self) { city in
                             Box(city: city, viewModel: WeatherViewModel(weatherService: WeatherService()))
                         }
                     }
@@ -29,8 +29,11 @@ struct ListView: View {
             }.navigationBarTitle(Text("Weather List"))
             .navigationBarItems(trailing:
                                     Button(action: {
-                                        //Refresh data
-                                        //weatherViewModel.refresh()
+//                                        vm.refreshBoxes()
+//                                        for i in vm.weatherList{
+//                                            weatherViewModel.requestWeather(city: i)
+//                                        }
+//                                        weatherViewModel.refresh()
                                     }) {
                                         Image(systemName: "arrow.clockwise")
                                             .foregroundColor(.white)
@@ -38,7 +41,7 @@ struct ListView: View {
                                     }
             )
             
-        }.environmentObject(listViewModel)
+        }.environmentObject(vm)
     }
 }
 
@@ -105,7 +108,7 @@ struct Box: View{
                     }
                     ProgressView("Incidence Value", value: circleValue, total: 100)
                         .progressViewStyle(
-                            CirclerPercentageProgressViewStyle2(circleColor: colorCircle))
+                            BoxProgressBarCircled(circleColor: colorCircle))
                 }
                 
                 
@@ -117,7 +120,7 @@ struct Box: View{
     }
 }
 
-struct CirclerPercentageProgressViewStyle2 : ProgressViewStyle {
+struct BoxProgressBarCircled : ProgressViewStyle {
     
     var circleColor: Color
     
