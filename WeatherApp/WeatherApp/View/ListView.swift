@@ -33,6 +33,15 @@ struct ListView: View {
                     }
                 }
             }.navigationBarTitle(Text("Weather List"))
+            .navigationBarItems(trailing:
+                                    Button(action: {
+                                        //Refresh
+                                    }) {
+                                        Image(systemName: "arrow.clockwise")
+                                            .foregroundColor(.white)
+                                            .font(.system(size: 25))
+                                    }
+            )
             
         }.environmentObject(listViewModel)
     }
