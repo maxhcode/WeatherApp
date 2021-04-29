@@ -1,5 +1,7 @@
 # WeatherApp
 
+**Setup**
+
 This App was written in Swift with the SwiftUI framework
 
 To view the Code:
@@ -12,9 +14,10 @@ In that folder there is a file called:
 ```
 WeatherApp.xcodeproj
 ```
-Which you can open to see the Projects Code
+Which you can open to see the Projects Code.
 
-Then you should be able to see the Code in the Xcode Editor
+Then you should be able to see the Code in the Xcode Editor.
+
 
 There are no dependencies that need to be installed with this project
 
