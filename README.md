@@ -1,6 +1,6 @@
 # WeatherApp
 
-This App was written with the SwiftUI framework
+This App was written in Swift with the SwiftUI framework
 
 In order to view the Code:
 
