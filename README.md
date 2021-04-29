@@ -1,6 +1,6 @@
 # WeatherApp
 
-**Setup**
+## Setup
 
 This App was written in Swift with the SwiftUI framework
 
