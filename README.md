@@ -3,7 +3,6 @@
 In order to view the Code:
 
 You have to open the Folder WeatherApp and in that folder there is a file called:
-
 '''
 WeatherApp.xcodeproj
 '''
