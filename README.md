@@ -1,6 +1,6 @@
 # WeatherApp
 
-### General Information
+## General Information
 
 This App was written in Swift with the SwiftUI framework. 
 This App is using the Archtiecture MVVM
