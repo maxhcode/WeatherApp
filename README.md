@@ -10,7 +10,7 @@ This App is using the Archtiecture MVVM
 2. Open the folder which you cloned or downloaded it in
 3. Open the WeatherApp folder
 4. Open WeatherApp.xcodeproj
-5. Before running the simulator make sure you run the WeatherApp scheme. 
+5. Before running the simulator make sure you run the WeatherApp scheme and that a simulated location for the simulator is selected. 
 6. Select the desired IPhone simulator and run the simulator with (Cmd+R). 
 
 There are no dependencies used in this project
