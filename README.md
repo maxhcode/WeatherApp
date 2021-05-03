@@ -6,10 +6,10 @@ This App was written in Swift with the SwiftUI framework.
 This App is using the Archtiecture MVVM
 
 ### Run the app
-1. Clone or download the repo.
-2. Open the folder which you cloned or downloaded it in.
-3. Open the WeatherApp folder.
-4. Open WeatherApp.xcodeproj.
+1. Clone or download the repo
+2. Open the folder which you cloned or downloaded it in
+3. Open the WeatherApp folder
+4. Open WeatherApp.xcodeproj
 5. Before running the simulator make sure you run the WeatherApp scheme. 
 6. Select the desired IPhone simulator and run the simulator with (Cmd+R). 
 
