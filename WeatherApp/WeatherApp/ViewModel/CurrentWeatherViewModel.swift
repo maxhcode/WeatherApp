@@ -87,16 +87,3 @@ public class WeatherViewModel: ObservableObject {
     }
     
 }
-
-
-//    @EnvironmentObject var learningQuizViewModel: LearningQuizViewModel
-//
-//    @StateObject var learningViewModel = LearningViewModel()
-//        .environmentObject(learningViewModel)
-//
-//    struct LearningView_Previews: PreviewProvider {
-//        static var previews: some View {
-//            LearningView(learningViewModel: LearningViewModel())
-//        }
-//    }
-
