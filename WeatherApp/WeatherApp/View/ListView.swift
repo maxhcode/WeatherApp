@@ -12,7 +12,7 @@ struct ListView: View {
     init() {UINavigationBar.appearance().largeTitleTextAttributes = [.foregroundColor: UIColor.white]}
     
     @ObservedObject var weatherViewModel = WeatherViewModel(weatherService: WeatherService())
-    @EnvironmentObject var searchWeatherViewModel: SearchWeatherViewModel
+    
     @StateObject var vm = ListViewModel()
     
     var body: some View {

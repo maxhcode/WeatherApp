@@ -13,7 +13,6 @@ struct SearchWeatherView: View {
     @State var matchedValue: Array<String> = []
     @State var searchText: String = ""
     
-    @StateObject var vm = SearchWeatherViewModel()
     @ObservedObject var listViewModel = ListViewModel()
     
     init() {
@@ -58,7 +57,7 @@ struct SearchWeatherView: View {
                     
                 }
             }.navigationBarTitle(Text("Weather Search"))
-        }.environmentObject(vm)
+        }
     }
 }
 
@@ -70,7 +69,6 @@ struct SearchWeatherView_Previews: PreviewProvider {
 
 
 struct MatchSearchBar: View{
-    @StateObject var searchWeatherViewModel = SearchWeatherViewModel()
     @Binding var matchableValues: Array<String>
     @Binding var matchedValues: Array<String>
     @Binding var input: String
