@@ -5,7 +5,7 @@
 This App was written in Swift with the SwiftUI framework. 
 This App is using the Archtiecture MVVM
 
-## Run the app
+### Run the app
 1- Clone or download the repo
 2- Open the folder which you cloned or downloaded it in
 3- Open the WeatherApp folder
