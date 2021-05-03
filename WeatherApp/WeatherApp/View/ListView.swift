@@ -29,11 +29,6 @@ struct ListView: View {
             }.navigationBarTitle(Text("Weather List"))
             .navigationBarItems(trailing:
                                     Button(action: {
-//                                        vm.refreshBoxes()
-//                                        for i in vm.weatherList{
-//                                            weatherViewModel.requestWeather(city: i)
-//                                        }
-//                                        weatherViewModel.refresh()
                                     }) {
                                         Image(systemName: "arrow.clockwise")
                                             .foregroundColor(.white)
