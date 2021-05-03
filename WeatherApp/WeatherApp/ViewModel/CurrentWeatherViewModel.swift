@@ -33,7 +33,7 @@ public class WeatherViewModel: ObservableObject {
     }
     
     func requestWeather(city: String){
-        weatherService.makeApiRequest(city: city)
+        weatherService.executeApiRequest(city: city)
     }
     
     public func refresh(){

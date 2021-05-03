@@ -17,7 +17,7 @@ public class WeatherService: NSObject {
         self.completionHandler = completionHandler
     }
     
-    public func makeApiRequest(city: String) {
+    public func executeApiRequest(city: String) {
         guard let urlString = "https://api.openweathermap.org/data/2.5/weather?&q=\(city)&appid=\(API_KEY)&units=\(unit)".addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) else { return }
         guard let url = URL(string: urlString) else { return }
         
@@ -27,11 +27,5 @@ public class WeatherService: NSObject {
                 self.completionHandler?(Weather(response: response))
             }
         }.resume()
-    }
-}
-
-extension WeatherService {
-    public func locationManager(){
-        makeApiRequest(city: "Berlin")
     }
 }

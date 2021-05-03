@@ -21,7 +21,7 @@ struct ApiResponseMain: Decodable{
 struct ApiResponseWeather: Decodable{
     let description: String
     let iconName: String
-    
+
     enum CodingKeys: String, CodingKey {
         case description
         case iconName = "main"
