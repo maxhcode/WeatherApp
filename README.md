@@ -1,25 +1,18 @@
 # WeatherApp
 
-## Setup
+### Setup
 
 This App was written in Swift with the SwiftUI framework
 
-To view the Code:
+## Run the app
+1- Clone or download the repo
+2- Open the folder which you cloned or downloaded it in
+3- Open the WeatherApp folder
+4- Open WeatherApp.xcodeproj
+5- Before running the simulator make sure you run the WeatherApp scheme. 
+6- Select the desired IPhone simulator and run the simulator with (Cmd+R)  
 
-You have to open the folder: 
-```
-WeatherApp
-```
-In that folder there is a file called:
-```
-WeatherApp.xcodeproj
-```
-Which you can open to see the Projects Code.
-
-Then you should be able to see the Code in the Xcode Editor.
-
-
-There are no dependencies that need to be installed with this project
+There are no dependencies used in this project
 
 For the Project, the architecture MVVM was used which build upon a Model, View, ViewModel
 
