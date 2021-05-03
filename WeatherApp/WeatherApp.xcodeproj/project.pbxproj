@@ -18,7 +18,6 @@
 		D5B0C635262C7370004EB762 /* SearchWeatherView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5B0C634262C7370004EB762 /* SearchWeatherView.swift */; };
 		D5B0C63C262DC509004EB762 /* LocationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5B0C63B262DC509004EB762 /* LocationService.swift */; };
 		D5FCBE962635965400A1636C /* CurrentWeatherViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5FCBE952635965400A1636C /* CurrentWeatherViewModel.swift */; };
-		D5FCBE9A2635A19700A1636C /* SearchWeatherViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5FCBE992635A19700A1636C /* SearchWeatherViewModel.swift */; };
 		D5FCBE9E2635A81500A1636C /* WeatherService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5FCBE9D2635A81500A1636C /* WeatherService.swift */; };
 /* End PBXBuildFile section */
 
@@ -36,7 +35,6 @@
 		D5B0C634262C7370004EB762 /* SearchWeatherView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchWeatherView.swift; sourceTree = "<group>"; };
 		D5B0C63B262DC509004EB762 /* LocationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationService.swift; sourceTree = "<group>"; };
 		D5FCBE952635965400A1636C /* CurrentWeatherViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentWeatherViewModel.swift; sourceTree = "<group>"; };
-		D5FCBE992635A19700A1636C /* SearchWeatherViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = SearchWeatherViewModel.swift; path = WeatherApp/ViewModel/SearchWeatherViewModel.swift; sourceTree = SOURCE_ROOT; };
 		D5FCBE9D2635A81500A1636C /* WeatherService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherService.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -104,7 +102,6 @@
 		D5A4B4FA262C4075000E65AD /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
-				D5FCBE992635A19700A1636C /* SearchWeatherViewModel.swift */,
 				D5FCBE952635965400A1636C /* CurrentWeatherViewModel.swift */,
 				D550BE5226399EC6009E4299 /* ListViewModel.swift */,
 			);
@@ -205,7 +202,6 @@
 				D5FCBE9E2635A81500A1636C /* WeatherService.swift in Sources */,
 				D5A4B504262C4ED9000E65AD /* MainView.swift in Sources */,
 				D550BE5326399EC6009E4299 /* ListViewModel.swift in Sources */,
-				D5FCBE9A2635A19700A1636C /* SearchWeatherViewModel.swift in Sources */,
 				D59F71B0262C3EF900C47995 /* WeatherAppApp.swift in Sources */,
 				D5B0C635262C7370004EB762 /* SearchWeatherView.swift in Sources */,
 			);
