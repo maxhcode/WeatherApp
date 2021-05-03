@@ -1,8 +1,9 @@
 # WeatherApp
 
-### Setup
+### General Information
 
-This App was written in Swift with the SwiftUI framework
+This App was written in Swift with the SwiftUI framework. 
+This App is using the Archtiecture MVVM
 
 ## Run the app
 1- Clone or download the repo
