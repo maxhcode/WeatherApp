@@ -8,12 +8,14 @@
 import SwiftUI
 
 struct MainView: View {
+  
     init() {
         UITabBar.appearance().barTintColor = UIColor.black
         }
+    
     var body: some View {
         
-        TabView {
+        TabView{
             CurrentWeatherView(vm: WeatherViewModel(weatherService: WeatherService()))
                 .tabItem {
                     Label("Weather", systemImage: "triangle.circle")

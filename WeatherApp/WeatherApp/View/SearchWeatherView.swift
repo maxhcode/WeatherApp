@@ -19,7 +19,7 @@ struct SearchWeatherView: View {
         UINavigationBar.appearance().largeTitleTextAttributes = [.foregroundColor: UIColor.white]
         UITableView.appearance().backgroundColor = UIColor.flatDarkBackground
     }
-    
+
     var body: some View {
         NavigationView{
             ZStack{
@@ -58,8 +58,10 @@ struct SearchWeatherView: View {
                 }
             }.navigationBarTitle(Text("Weather Search"))
         }
+        }
     }
-}
+
+
 
 struct SearchWeatherView_Previews: PreviewProvider {
     static var previews: some View {

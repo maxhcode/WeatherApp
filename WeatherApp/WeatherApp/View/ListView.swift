@@ -8,7 +8,9 @@
 import SwiftUI
 
 
+
 struct ListView: View {
+    
     init() {UINavigationBar.appearance().largeTitleTextAttributes = [.foregroundColor: UIColor.white]}
     
     @ObservedObject var weatherViewModel = WeatherViewModel(weatherService: WeatherService())
